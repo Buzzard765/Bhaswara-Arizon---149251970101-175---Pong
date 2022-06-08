@@ -15,17 +15,11 @@ public class PadMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if(gameObject.name.Contains("P1")){
             movement1();
         }else if(gameObject.name.Contains("P2")){
             movement2();
         }
-        transform.position = new Vector3(
-            transform.position.x,
-            Mathf.Clamp(transform.position.y,-4, 4),
-            transform.position.z
-        );
     }
 
     void movement1(){
