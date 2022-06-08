@@ -24,9 +24,13 @@ public class Ball : MonoBehaviour
     }
 
     IEnumerator Launch(){
+        int[] angle = new int[]{2,1,-2,-1};
+        int[] direction = new int[]{2,1,-2,-1};
         HitCount = 0;
         yield return new WaitForSeconds(3f);
-        Movement(new Vector2(2,-1));
+        Movement(new Vector2(
+            direction[Random.Range(0,direction.Length-1)]
+            ,angle[Random.Range(0,angle.Length-1)]));
     }
 
     public void Movement(Vector2 direction){
@@ -35,11 +39,34 @@ public class Ball : MonoBehaviour
         rb2d.velocity = direction *  ballspeed;
     }
 
-    private void onCollisionEnter2D(Collider2D collision){
-        if(collision.gameObject.name.Contains("Pad")){
+    private void OnCollisionEnter2D(Collision2D other) {
+        Debug.Log("Collision");
+        if(other.gameObject.name.Contains("Pad")){
             if(speed <=maxSpeed){
-                HitCount++;
+                speed++;
             }
         }
+        
+        if(other.gameObject.name.Contains("Goal")){
+            StartCoroutine(ReLaunch());
+        }
     }
+
+    IEnumerator ReLaunch(){
+        rb2d.velocity = Vector2.zero;
+        transform.position = Vector2.zero;
+
+        int[] angle = new int[]{2,1,-2,-1};
+        int[] direction = new int[]{2,1,-2,-1};
+        HitCount = 0;
+        yield return new WaitForSeconds(1f);
+        Movement(new Vector2(
+            direction[Random.Range(0,direction.Length-1)]
+            ,angle[Random.Range(0,angle.Length-1)]));
+    }
+
+   
+    
+
+    
 }
