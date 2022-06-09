@@ -63,11 +63,11 @@ public class Ball : MonoBehaviour
 
         if(other.gameObject.name.Contains("GoalP1")){
             StartCoroutine(Launch(2f));
-            GameManager.P1Score_Acc++;
+            GameManager.P2Score_Acc++;
         }else if(other.gameObject.name.Contains("GoalP2")
         ){
             StartCoroutine(Launch(2f));
-            GameManager.P2Score_Acc++;
+            GameManager.P1Score_Acc++;
         }
     }
 
