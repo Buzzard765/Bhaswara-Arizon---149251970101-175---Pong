@@ -20,6 +20,11 @@ public class PadMovement : MonoBehaviour
         }else if(gameObject.name.Contains("P2")){
             movement2();
         }
+
+        transform.position = new Vector2(
+            transform.position.x,
+            Mathf.Clamp(transform.position.y, -4, 4)
+        );
     }
 
     void movement1(){
