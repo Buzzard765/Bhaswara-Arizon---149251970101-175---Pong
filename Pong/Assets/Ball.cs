@@ -49,7 +49,7 @@ public class Ball : MonoBehaviour
         && GameManager.P2Score_Acc < GameManager.Limit_Acc){
             direction = direction.normalized;   
             rb2d.velocity = direction * speed;
-            Debug.Log(rb2d.velocity);
+            Debug.Log(speed);
         }
         
     }
