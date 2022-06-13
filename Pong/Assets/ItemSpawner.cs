@@ -43,7 +43,7 @@ public class ItemSpawner : MonoBehaviour
                 default:
                     break;
             }               
-            
+            resetSpawnRate();
         }
     }
 

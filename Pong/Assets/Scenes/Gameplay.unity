@@ -156,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   BoundaryMax: {x: 8, y: 3.5}
-  BoundaryMin: {x: 4, y: -3.5}
+  BoundaryMin: {x: 5, y: -3.5}
 --- !u!212 &4229603
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -316,7 +316,7 @@ Canvas:
   m_GameObject: {fileID: 420525622}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -706,7 +706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  BoundaryMax: {x: -4, y: 3.5}
+  BoundaryMax: {x: -5, y: 3.5}
   BoundaryMin: {x: -8, y: -3.5}
 --- !u!212 &855222820
 SpriteRenderer:
