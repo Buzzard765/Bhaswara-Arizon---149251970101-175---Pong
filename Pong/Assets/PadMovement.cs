@@ -6,6 +6,7 @@ public class PadMovement : MonoBehaviour
 {
     [SerializeField]float speed;
     Rigidbody2D rb2d;
+    [SerializeField] Vector2 BoundaryMax, BoundaryMin;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +23,8 @@ public class PadMovement : MonoBehaviour
         }
 
         transform.position = new Vector2(
-            transform.position.x,
-            Mathf.Clamp(transform.position.y, -4, 4)
+            Mathf.Clamp(transform.position.x, BoundaryMin.x, BoundaryMax.x),
+            Mathf.Clamp(transform.position.y, BoundaryMin.y, BoundaryMax.y)
         );
     }
 
@@ -34,6 +35,13 @@ public class PadMovement : MonoBehaviour
         if(Input.GetKey(KeyCode.S)){
             transform.position -= transform.up * Time.deltaTime * speed;
         }
+        if(Input.GetKey(KeyCode.D)){
+            transform.position += transform.right * Time.deltaTime * speed;
+        }
+        if(Input.GetKey(KeyCode.A)){
+            transform.position -= transform.right * Time.deltaTime * speed;
+        }
+
     }
 
     void movement2(){
@@ -42,6 +50,12 @@ public class PadMovement : MonoBehaviour
         }
         if(Input.GetKey(KeyCode.DownArrow)){
             transform.position -= transform.up * Time.deltaTime * speed;
+        }
+        if(Input.GetKey(KeyCode.RightArrow)){
+            transform.position += transform.right * Time.deltaTime * speed;
+        }
+        if(Input.GetKey(KeyCode.LeftArrow)){
+            transform.position -= transform.right * Time.deltaTime * speed;
         }
     }
 
