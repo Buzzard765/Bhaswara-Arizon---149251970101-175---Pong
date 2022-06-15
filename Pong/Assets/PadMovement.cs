@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PadMovement : MonoBehaviour
 {
-    [SerializeField]float speed;
+    public float speed;
     Rigidbody2D rb2d;
     [SerializeField] Vector2 BoundaryMax, BoundaryMin;
     // Start is called before the first frame update

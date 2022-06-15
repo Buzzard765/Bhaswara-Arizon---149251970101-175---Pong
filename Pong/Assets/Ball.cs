@@ -66,7 +66,11 @@ public class Ball : MonoBehaviour
         }
         
     }
-
+    //StartCoroutine dipanggil
+    //terus bawahnya dia ubah speed jadi return speed
+    //perlu diingat, StartCoroutine itu eksekusinya tidak nunggu sampai coroutinenya selesai baru eksekusi bawahnya
+    //tapi langsungcoba cek coroutine di Unity deh
+    //sama konsep asynchronous
     private void OnCollisionEnter2D(Collision2D other) {
          /*if(other.gameObject.name.Contains("Pad")){
             if(HitCount <=maxSpeed){

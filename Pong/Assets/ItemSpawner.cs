@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
-    [SerializeField]public List<GameObject> PowerUp = new List<GameObject>();
+    public GameObject[] PowerUpP1, PowerUpP2;
     public Vector2 P1SideMax, P2SideMax, P1SideMin, P2SideMin;
     [SerializeField]float spawnRate;
     private float returnSpawnRate;
@@ -28,27 +28,30 @@ public class ItemSpawner : MonoBehaviour
             switch(sideindex){
                 case 0:
                     SpawnPowerUp(
+                        PowerUpP1[Random.Range(0,PowerUpP1.Length)],
                         new Vector2(
                             Random.Range(P1SideMax.x, P1SideMin.x),
-                            Random.Range(P1SideMax.y, P1SideMin.y)),
-                            Random.Range(0, PowerUp.Count-1));
+                            Random.Range(P1SideMax.y, P1SideMin.y)
+                            )
+                        );
                     break;
                 case 1:
                     SpawnPowerUp(
+                        PowerUpP1[Random.Range(0,PowerUpP2.Length)],
                         new Vector2(
                             Random.Range(P2SideMax.x, P2SideMin.x),
-                            Random.Range(P2SideMax.y, P2SideMin.y)),
-                            Random.Range(0, PowerUp.Count-1));
+                            Random.Range(P2SideMax.y, P2SideMin.y))
+                           );
                     break;
-                default:
+                default:                   
                     break;
             }               
             resetSpawnRate();
         }
     }
 
-    void SpawnPowerUp(Vector2 SpawnSpot, int index){
-        Instantiate(PowerUp[index], SpawnSpot, Quaternion.identity);
+    void SpawnPowerUp(GameObject PowerUp, Vector2 SpawnSpot){
+        Instantiate(PowerUp, SpawnSpot, Quaternion.identity);
         spawnAmount-=1;
         sideindex = Random.Range(0,2); 
     }

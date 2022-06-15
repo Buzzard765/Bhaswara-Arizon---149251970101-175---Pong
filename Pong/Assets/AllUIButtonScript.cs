@@ -21,5 +21,9 @@ public class AllUIButtonScript : MonoBehaviour
         Debug.Log("Created by Bhaswara Arizon - 149251970101-175");
         SceneManager.LoadSceneAsync(levelNum);
     }
+
+    public void Quit(){
+        SceneManager.LoadSceneAsync("Main Menu");
+    }
 }
 

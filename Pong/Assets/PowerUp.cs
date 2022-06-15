@@ -15,4 +15,9 @@ public class PowerUp : MonoBehaviour
     {
         Destroy(gameObject, 5);
     }
+
+    public void ReturnAmount(float delay){
+        FindObjectOfType<ItemSpawner>().spawnAmount++;
+        Destroy(gameObject,delay);
+    }
 }

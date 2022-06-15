@@ -24,19 +24,15 @@ public class SpeedDown : PowerUp
         }
     }
 
-    public void SlowDown(){
+    private void SlowDown(){
         Ball ball = FindObjectOfType<Ball>();
         ball.rb2d.velocity *= magnitude;        
-    }
-
-    private void ReturnAmount(float delay){
-        FindObjectOfType<ItemSpawner>().spawnAmount++;
-        Destroy(gameObject,delay);
-    }
+    }   
 
     IEnumerator ReturnAmount2(){
         yield return new WaitForSeconds(9f);
         FindObjectOfType<ItemSpawner>().spawnAmount++;
         Destroy(gameObject);
     }
+
 }
