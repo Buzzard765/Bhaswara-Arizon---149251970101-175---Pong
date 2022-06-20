@@ -566,7 +566,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Back to Main Menu
 --- !u!222 &500655216
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1136,7 +1136,6 @@ MonoBehaviour:
   rb2d: {fileID: 0}
   speed: 2
   maxSpeed: 6
-  returnSpeed: 0
   balldirection: {x: 0, y: 0}
   coll: {fileID: 0}
 --- !u!58 &1489432180

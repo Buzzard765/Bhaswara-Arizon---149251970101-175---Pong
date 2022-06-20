@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class Ball : MonoBehaviour
 {
     public Rigidbody2D rb2d;
-    [SerializeField] float speed, maxSpeed, returnSpeed;
+    [SerializeField] float speed, maxSpeed;
+    private float returnSpeed;
     public Vector2 balldirection;
     
     public Collider2D coll;
@@ -30,7 +31,7 @@ public class Ball : MonoBehaviour
 
     async void Start()
     {
-        
+        returnSpeed = speed;
         rb2d = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         StartCoroutine(Launch(3f));              
@@ -46,21 +47,22 @@ public class Ball : MonoBehaviour
        
     }
 
-    IEnumerator Launch(float delay){     
-            int[] angle = new int[]{2,1,-2,-1};   
-            rb2d.velocity = Vector2.zero;
-            transform.position = Vector2.zero;
-            coll.sharedMaterial.bounciness = 1;                  
-            HitCount = 0;          
-            yield return new WaitForSeconds(delay);
-            Movement( new Vector2(angle[Random.Range(0,angle.Length-1)], angle[Random.Range(0,angle.Length-1)]));
-            
+    IEnumerator Launch(float delay){
+        speed = returnSpeed;     
+        int[] angle = new int[]{2,1,-2,-1};   
+        rb2d.velocity = Vector2.zero;
+        transform.position = Vector2.zero;
+        coll.sharedMaterial.bounciness = 1;                  
+        HitCount = 0;          
+        yield return new WaitForSeconds(delay);
+        Movement( new Vector2(angle[Random.Range(0,angle.Length-1)], angle[Random.Range(0,angle.Length-1)]));
+        //return speed;
     }
 
     public void Movement(Vector2 direction){
+       
         if(GameManager.P1Score_Acc < GameManager.Limit_Acc
-        && GameManager.P2Score_Acc < GameManager.Limit_Acc){
-             
+        && GameManager.P2Score_Acc < GameManager.Limit_Acc){           
             rb2d.velocity = direction * speed;
             Debug.Log(speed);
         }
@@ -72,21 +74,22 @@ public class Ball : MonoBehaviour
     //tapi langsungcoba cek coroutine di Unity deh
     //sama konsep asynchronous
     private void OnCollisionEnter2D(Collision2D other) {
-         /*if(other.gameObject.name.Contains("Pad")){
+         if(other.gameObject.name.Contains("Pad")){
             if(HitCount <=maxSpeed){
                 HitCount++;
-                                       
+                speed += 0.2f;
+                rb2d.velocity *=  speed/returnSpeed;                      
             }
-        }*/
+        }
         if(other.gameObject.name.Contains("GoalP1")){
-            StartCoroutine(Launch(2f));
+            StartCoroutine(Launch(2f));            
             FindObjectOfType<ItemSpawner>().resetSpawnRate();
             GameManager.P2Score_Acc++;
         }else if(other.gameObject.name.Contains("GoalP2")){
             StartCoroutine(Launch(2f));
+            
             FindObjectOfType<ItemSpawner>().resetSpawnRate();
-            GameManager.P1Score_Acc++;
-            //rb2d.velocity *= speed;
+            GameManager.P1Score_Acc++;            
         }
     }
 
